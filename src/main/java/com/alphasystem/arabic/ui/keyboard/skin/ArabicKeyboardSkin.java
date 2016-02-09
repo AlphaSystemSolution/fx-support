@@ -53,6 +53,10 @@ public class ArabicKeyboardSkin extends SkinBase<ArabicKeyboard> {
         return builder.toString();
     }
 
+    public void clearText(){
+        skinView.textArea.setText("");
+    }
+
     public KeyboardView getKeyboard() {
         return skinView.keyboard;
     }
