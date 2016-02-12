@@ -25,6 +25,7 @@ import static com.alphasystem.fx.ui.util.UiUtilities.createIcon;
 import static com.alphasystem.fx.ui.util.UiUtilities.wrapInScrollPane;
 import static java.util.Arrays.sort;
 import static javafx.geometry.Pos.CENTER;
+import static javafx.scene.control.ContentDisplay.TOP;
 import static javafx.scene.control.TabPane.TabClosingPolicy.UNAVAILABLE;
 import static javafx.scene.text.FontPosture.REGULAR;
 import static javafx.scene.text.FontWeight.BLACK;
@@ -34,7 +35,7 @@ import static javafx.scene.text.FontWeight.BLACK;
  */
 public class FontAwesomeView extends BorderPane {
 
-    public static final int NUM_OF_COLUMNS = 8;
+    public static final int NUM_OF_COLUMNS = 5;
     public static final int VGAP = 5;
     public static final int HGAP = 10;
 
@@ -88,6 +89,13 @@ public class FontAwesomeView extends BorderPane {
         label.setFont(Font.font("Candara", BLACK, REGULAR, 12.0));
         label.setTextAlignment(TextAlignment.CENTER);
         label.setAlignment(CENTER);
+        label.setContentDisplay(TOP);
+        label.setStyle("-fx-background-color: transparent; -fx-border-color: lightgray; -fx-border-width: 1px;");
+        label.setPrefSize(250, 80);
+        label.setMinWidth(USE_PREF_SIZE);
+        label.setMaxWidth(USE_PREF_SIZE);
+        label.setMinHeight(USE_PREF_SIZE);
+        label.setMaxHeight(USE_PREF_SIZE);
         if (icon != null) {
             label.setGraphic(createIcon(icon, size, viewClass));
             label.setText(icon.name());
