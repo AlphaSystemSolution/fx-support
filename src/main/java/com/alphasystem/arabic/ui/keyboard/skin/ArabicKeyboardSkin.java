@@ -54,7 +54,7 @@ public class ArabicKeyboardSkin extends SkinBase<ArabicKeyboard> {
     }
 
     public void clearText(){
-        skinView.textArea.setText("");
+        skinView.textArea.setText(null);
     }
 
     public KeyboardView getKeyboard() {
