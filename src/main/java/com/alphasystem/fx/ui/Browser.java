@@ -1,6 +1,6 @@
 package com.alphasystem.fx.ui;
 
-import javafx.scene.control.ScrollPane;
+import com.alphasystem.fx.ui.util.UiUtilities;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -10,7 +10,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import static java.lang.String.format;
-import static javafx.scene.control.ScrollPane.ScrollBarPolicy.AS_NEEDED;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
 /**
@@ -22,13 +21,7 @@ public class Browser extends BorderPane {
     final WebEngine webEngine = browser.getEngine();
 
     public Browser() {
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setHbarPolicy(AS_NEEDED);
-        scrollPane.setVbarPolicy(AS_NEEDED);
-        scrollPane.setFitToWidth(true);
-        scrollPane.setFitToHeight(true);
-        scrollPane.setContent(browser);
-        setCenter(browser);
+        setCenter(UiUtilities.wrapInScrollPane(browser));
     }
 
     public void loadUrl(final String url) {
