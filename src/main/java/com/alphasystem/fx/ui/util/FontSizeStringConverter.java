@@ -5,15 +5,15 @@ import javafx.util.StringConverter;
 /**
  * @author sali
  */
-public class FontSizeStringConverter extends StringConverter<Integer> {
+public class FontSizeStringConverter extends StringConverter<Long> {
 
     @Override
-    public String toString(Integer object) {
+    public String toString(Long object) {
         return (object == null) ? "" : String.valueOf(object);
     }
 
     @Override
-    public Integer fromString(String string) {
-        return (string == null) ? 0 : Integer.parseInt(string);
+    public Long fromString(String string) {
+        return (string == null) ? 0 : Long.parseLong(string);
     }
 }
