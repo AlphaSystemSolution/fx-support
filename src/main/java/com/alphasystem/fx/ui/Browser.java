@@ -21,6 +21,7 @@ public class Browser extends BorderPane {
     final WebEngine webEngine = browser.getEngine();
 
     public Browser() {
+        webEngine.setJavaScriptEnabled(true);
         setCenter(UiUtilities.wrapInScrollPane(browser));
     }
 
