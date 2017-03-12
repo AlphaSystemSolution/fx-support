@@ -1,6 +1,7 @@
 package com.alphasystem.fx.ui;
 
 import com.alphasystem.fx.ui.util.UiUtilities;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -8,6 +9,7 @@ import javafx.scene.web.WebView;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Optional;
 
 import static java.lang.String.format;
 import static org.apache.commons.lang3.StringUtils.isBlank;
@@ -17,11 +19,17 @@ import static org.apache.commons.lang3.StringUtils.isBlank;
  */
 public class Browser extends BorderPane {
 
-    final WebView browser = new WebView();
-    final WebEngine webEngine = browser.getEngine();
+    private final WebView browser = new WebView();
+    private final WebEngine webEngine = browser.getEngine();
 
     public Browser() {
         webEngine.setJavaScriptEnabled(true);
+        webEngine.setPromptHandler(param -> {
+            TextInputDialog dialog = new TextInputDialog(param.getDefaultValue());
+            dialog.setHeaderText(param.getMessage());
+            final Optional<String> result = dialog.showAndWait();
+            return result.isPresent() ? result.get() : param.getDefaultValue();
+        });
         setCenter(UiUtilities.wrapInScrollPane(browser));
     }
 
