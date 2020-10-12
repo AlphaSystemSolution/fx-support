@@ -14,8 +14,8 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.alphasystem.arabic:arabic-support:3.0.0-SNAPSHOT'
-    implementation 'de.jensd:fontawesomefx:8.9'
+    compile 'com.alphasystem.arabic:arabic-support:3.0.0-SNAPSHOT'
+    compile 'de.jensd:fontawesomefx:8.9'
 }
 
 group = 'com.alphasystem.ui'
