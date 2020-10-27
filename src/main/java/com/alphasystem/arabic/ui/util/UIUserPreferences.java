@@ -38,7 +38,7 @@ public abstract class UIUserPreferences extends GenericPreferences {
     }
 
     public String getArabicFontName() {
-        return getFontNode().get(ARABIC_FONT_NAME_KEY, FontUtilities.getDefaultArabicFontName());
+        return getFontNode().get(ARABIC_FONT_NAME_KEY, FontUtilities.defaultArabicFontName);
     }
 
     public void setArabicFontName(String name) {
@@ -60,7 +60,7 @@ public abstract class UIUserPreferences extends GenericPreferences {
     }
 
     public String getEnglishFontName() {
-        return getFontNode().get(ENGLISH_FONT_NAME, FontUtilities.getDefaultEnglishFont());
+        return getFontNode().get(ENGLISH_FONT_NAME, FontUtilities.defaultEnglishFontName);
     }
 
     public void setEnglishFontName(String name) {
