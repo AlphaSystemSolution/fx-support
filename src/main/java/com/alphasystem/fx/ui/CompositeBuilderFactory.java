@@ -1,5 +1,6 @@
 package com.alphasystem.fx.ui;
 
+import com.alphasystem.util.AppUtil;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.util.Builder;
 import javafx.util.BuilderFactory;
@@ -8,6 +9,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -26,9 +28,7 @@ public class CompositeBuilderFactory implements BuilderFactory {
 
     private CompositeBuilderFactory(BuilderFactory... factories) {
         if (!isEmpty(factories)) {
-            for (BuilderFactory factory : factories) {
-                builderFactories.add(factory);
-            }
+            Collections.addAll(builderFactories, factories);
         }
         builderFactories.add(new JavaFXBuilderFactory());
     }
@@ -37,15 +37,14 @@ public class CompositeBuilderFactory implements BuilderFactory {
         if (instance == null) {
             BuilderFactory[] builderFactories = new BuilderFactory[0];
             final Class<CompositeBuilderFactory> thisClass = CompositeBuilderFactory.class;
-            final ClassLoader classLoader = thisClass.getClassLoader();
             try {
-                final Enumeration<URL> resources = classLoader.getResources(format("META-INF/%s", thisClass.getName()));
+                final Enumeration<URL> resources = AppUtil.getResources(format("META-INF/%s", thisClass.getName()));
                 if (resources != null) {
                     while (resources.hasMoreElements()) {
                         final URL url = resources.nextElement();
                         try {
                             final List<String> lines = readAllLines(url);
-                            if (lines != null && !lines.isEmpty()) {
+                            if (!lines.isEmpty()) {
                                 for (String line : lines) {
                                     try {
                                         final Class<?> aClass = Class.forName(line);
