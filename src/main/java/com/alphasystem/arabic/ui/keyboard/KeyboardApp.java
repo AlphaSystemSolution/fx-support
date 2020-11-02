@@ -1,5 +1,6 @@
 package com.alphasystem.arabic.ui.keyboard;
 
+import com.alphasystem.arabic.ui.util.FontUtilities;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
@@ -38,7 +39,7 @@ public class KeyboardApp extends Application {
         Scene scene = new Scene(root);
 
         TextArea textArea = new TextArea();
-        textArea.setFont(font("Arabic Typesetting", BOLD, REGULAR, 36));
+        textArea.setFont(font(FontUtilities.defaultArabicFontName, BOLD, REGULAR, 36));
         textArea.setNodeOrientation(RIGHT_TO_LEFT);
         textArea.setFocusTraversable(false);
         textArea.setPrefColumnCount(50);
@@ -87,7 +88,7 @@ public class KeyboardApp extends Application {
         hBox.setPadding(new Insets(10));
 
         Button button = new Button("Copy");
-        button.setFont(font("Georgia", 20));
+        button.setFont(font(FontUtilities.defaultEnglishFontName, 20));
         button.setOnAction(event -> {
             textArea.selectAll();
             textArea.copy();
@@ -95,7 +96,7 @@ public class KeyboardApp extends Application {
         hBox.getChildren().add(button);
 
         button = new Button("Paste");
-        button.setFont(font("Georgia", 20));
+        button.setFont(font(FontUtilities.defaultEnglishFontName, 20));
         button.setOnAction(event -> textArea.paste());
         hBox.getChildren().add(button);
 

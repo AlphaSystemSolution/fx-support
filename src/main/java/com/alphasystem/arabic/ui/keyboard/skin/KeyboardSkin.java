@@ -4,6 +4,7 @@ import com.alphasystem.arabic.ui.keyboard.Key;
 import com.alphasystem.arabic.ui.keyboard.KeyboardRow;
 import com.alphasystem.arabic.ui.keyboard.KeyboardView;
 import com.alphasystem.arabic.ui.keyboard.KeyboardView.OutputType;
+import com.alphasystem.arabic.ui.util.FontUtilities;
 import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -38,7 +39,7 @@ import static javafx.scene.text.FontWeight.BOLD;
  */
 public class KeyboardSkin extends SkinBase<KeyboardView> {
 
-    private List<Key> buttonRow1 = asList(
+    private final List<Key> buttonRow1 = asList(
             new Key(DDAD.toUnicode(), FATHA.toUnicode(), Q),
             new Key(SAD.toUnicode(), FATHATAN.toUnicode(), W),
             new Key(THA.toUnicode(), DAMMA.toUnicode(), E),
@@ -53,8 +54,8 @@ public class KeyboardSkin extends SkinBase<KeyboardView> {
             new Key(DAL.toUnicode(), valueOf('\u007D'), CLOSE_BRACKET),
             new Key(THAL.toUnicode(), SHADDA.toUnicode(), BACK_SLASH));
 
-    private List<Key> buttonRow2 = asList(
-            new Key(SHEEN.toUnicode(), valueOf("\u005C\u005C"), A),
+    private final List<Key> buttonRow2 = asList(
+            new Key(SHEEN.toUnicode(), "\u005C\u005C", A),
             new Key(SEEN.toUnicode(), ALIF_KHAN_JAREEYA.toUnicode(), S),
             new Key(YA.toUnicode(), valueOf('\u005D'), D),
             new Key(BA.toUnicode(), valueOf('\u005B'), F),
@@ -66,7 +67,7 @@ public class KeyboardSkin extends SkinBase<KeyboardView> {
             new Key(KAF.toUnicode(), valueOf((char) 0x3B), SEMICOLON),
             new Key(TTA.toUnicode(), valueOf('\u0022'), QUOTE));
 
-    private List<Key> buttonRow3 = asList(
+    private final List<Key> buttonRow3 = asList(
             new Key(YA_HAMZA_ABOVE.toUnicode(), valueOf('\u007E'), Z),
             new Key(HAMZA.toUnicode(), SUKUN.toUnicode(), X),
             new Key(WAW_HAMZA_ABOVE.toUnicode(), KASRA.toUnicode(), C),
@@ -95,7 +96,7 @@ public class KeyboardSkin extends SkinBase<KeyboardView> {
         ToggleButton toggleButton = new ToggleButton("Shift");
         toggleButton.setStyle("-fx-base: beige;");
         toggleButton.setPrefSize(128, 48);
-        toggleButton.setFont(font("Candara", BOLD, REGULAR, 12));
+        toggleButton.setFont(font(FontUtilities.defaultEnglishFontName, BOLD, REGULAR, 12));
         return toggleButton;
     }
 
@@ -142,7 +143,7 @@ public class KeyboardSkin extends SkinBase<KeyboardView> {
     private Button createButton(String text) {
         Button button = new Button(text);
         button.setStyle("-fx-base: beige;");
-        button.setFont(font("Candara", BOLD, REGULAR, 12));
+        button.setFont(font(FontUtilities.defaultEnglishFontName, BOLD, REGULAR, 12));
         return button;
     }
 

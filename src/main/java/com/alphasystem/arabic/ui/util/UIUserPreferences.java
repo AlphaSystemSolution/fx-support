@@ -21,6 +21,7 @@ public abstract class UIUserPreferences extends GenericPreferences {
     private static final String ARABIC_FONT_SIZE = "arabicFontSize";
     private static final String ENGLISH_FONT_NAME = "englishFontName";
     private static final String ENGLISH_FONT_SIZE = "englishFontSize";
+    private static final String ARABIC_HEADING_FONT_SIZE = "arabicHeadingFontSize";
     private static final String INITIAL_DIRECTORY_KEY = "initialDirectory";
 
     protected UIUserPreferences(Class<?> c) {
@@ -45,6 +46,7 @@ public abstract class UIUserPreferences extends GenericPreferences {
         if (StringUtils.isEmpty(name)) {
             return;
         }
+        FontAdapter.getInstance().setArabicFontName(name);
         getFontNode().put(ARABIC_FONT_NAME_KEY, name);
     }
 
@@ -56,6 +58,7 @@ public abstract class UIUserPreferences extends GenericPreferences {
         if (size <= 0) {
             return;
         }
+        FontAdapter.getInstance().setArabicFontSize(size);
         getFontNode().putLong(ARABIC_FONT_SIZE, size);
     }
 
@@ -67,6 +70,7 @@ public abstract class UIUserPreferences extends GenericPreferences {
         if (StringUtils.isEmpty(name)) {
             return;
         }
+        FontAdapter.getInstance().setEnglishFontName(name);
         getFontNode().put(ENGLISH_FONT_NAME, name);
     }
 
@@ -78,6 +82,7 @@ public abstract class UIUserPreferences extends GenericPreferences {
         if (size <= 0) {
             return;
         }
+        FontAdapter.getInstance().setEnglishFontSize(size);
         getFontNode().putLong(ENGLISH_FONT_SIZE, size);
     }
 
@@ -122,6 +127,22 @@ public abstract class UIUserPreferences extends GenericPreferences {
 
     public Font getEnglishFont14() {
         return Font.font(getEnglishFontName(), FontWeight.NORMAL, FontPosture.REGULAR, 14);
+    }
+
+    public long getArabicHeadingFontSize() {
+        return getFontNode().getLong(ARABIC_HEADING_FONT_SIZE, 30);
+    }
+
+    public void setArabicHeadingFontSize(long size) {
+        if (size <= 0) {
+            return;
+        }
+        FontAdapter.getInstance().setArabicHeadingFontSize(size);
+        getFontNode().putLong(ARABIC_HEADING_FONT_SIZE, size);
+    }
+
+    public Font getArabicHeadingFont() {
+        return Font.font(getArabicFontName(), FontWeight.BOLD, FontPosture.REGULAR, getArabicHeadingFontSize());
     }
 
 }

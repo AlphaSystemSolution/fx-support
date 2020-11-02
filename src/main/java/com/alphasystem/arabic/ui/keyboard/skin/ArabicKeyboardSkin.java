@@ -2,6 +2,7 @@ package com.alphasystem.arabic.ui.keyboard.skin;
 
 import com.alphasystem.arabic.ui.keyboard.ArabicKeyboard;
 import com.alphasystem.arabic.ui.keyboard.KeyboardView;
+import com.alphasystem.arabic.ui.util.FontUtilities;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -61,7 +62,7 @@ public class ArabicKeyboardSkin extends SkinBase<ArabicKeyboard> {
         return skinView.keyboard;
     }
 
-    class SkinView extends VBox {
+    static class SkinView extends VBox {
 
         @FXML
         KeyboardView keyboard;
@@ -90,7 +91,7 @@ public class ArabicKeyboardSkin extends SkinBase<ArabicKeyboard> {
 
         @FXML
         void initialize() {
-            textArea.setFont(font("Arabic Typesetting", NORMAL, REGULAR, 36));
+            textArea.setFont(font(FontUtilities.defaultArabicFontName, NORMAL, REGULAR, 36));
             keyboard.setTarget(textArea);
             keyboard.setOnMouseClicked(event -> keyboard.requestFocus());
         }

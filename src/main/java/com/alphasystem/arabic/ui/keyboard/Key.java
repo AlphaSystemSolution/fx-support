@@ -1,6 +1,7 @@
 package com.alphasystem.arabic.ui.keyboard;
 
 import com.alphasystem.arabic.ui.keyboard.KeyboardView.OutputType;
+import com.alphasystem.arabic.ui.util.FontUtilities;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.control.Button;
@@ -27,15 +28,15 @@ public class Key {
 
     private final Button button;
     private final BooleanProperty shiftPressed;
-    private KeyCode keyCode;
+    private final KeyCode keyCode;
 
     public Key(String defaultText, String alternateText, KeyCode keyCode) {
         button = new Button();
         button.setStyle("-fx-base: beige;");
-        button.setPrefSize(48, 16);
+        button.setPrefSize(64, 16);
         button.setNodeOrientation(RIGHT_TO_LEFT);
         button.setTextAlignment(CENTER);
-        button.setFont(font("Traditional Arabic", BOLD, REGULAR, 24));
+        button.setFont(font(FontUtilities.defaultArabicFontName, BOLD, REGULAR, 24));
         shiftPressed = new SimpleBooleanProperty();
         this.keyCode = keyCode;
 
@@ -74,8 +75,8 @@ public class Key {
 
     public void setAccelerator() {
         if (keyCode != null) {
-            button.getScene().getAccelerators().put(new KeyCodeCombination(keyCode), () -> fire());
-            button.getScene().getAccelerators().put(new KeyCodeCombination(keyCode, SHIFT_DOWN), () -> fire());
+            button.getScene().getAccelerators().put(new KeyCodeCombination(keyCode), this::fire);
+            button.getScene().getAccelerators().put(new KeyCodeCombination(keyCode, SHIFT_DOWN), this::fire);
         }
         button.setOnMouseClicked(event -> {
             if (isShiftPressed()) {
